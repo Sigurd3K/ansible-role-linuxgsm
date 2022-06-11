@@ -14,7 +14,7 @@ __linuxgsm_dependency_packages:
   - file
   - gzip
   - jq
-  - lib32gcc1
+  - {{ __lib32gcc_dependency }}
   - lib32stdc++6
   - netcat
   - python3
@@ -23,3 +23,5 @@ __linuxgsm_dependency_packages:
   - unzip
   - util-linux
   - wget
+
+__lib32gcc_dependency: "'lib32gcc-s1' if '{{ ansible_distribution}}' == 'Ubuntu' and {{ ansible_distribution_version is version('21.04', '>=') else 'lib32gcc1' }}"
